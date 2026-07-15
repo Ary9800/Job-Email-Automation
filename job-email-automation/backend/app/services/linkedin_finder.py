@@ -166,6 +166,91 @@ EXPERIENCE_IN_RANGE = [
     re.compile(r"experience\s*:\s*2", re.I),
 ]
 
+# UI experience filter → search phrases + post-match patterns
+EXPERIENCE_RANGES: dict[str, dict] = {
+    "any": {
+        "query": "",
+        "patterns": [],
+    },
+    "2+": {
+        "query": '("2+ years" OR "2 years" OR "2 to 4 years" OR "2-4 years")',
+        "patterns": [
+            re.compile(r"2\+", re.I),
+            re.compile(r"2\s*years?", re.I),
+            re.compile(r"2\s*[-–to]+\s*[345]\s*years?", re.I),
+        ],
+    },
+    "2-3": {
+        "query": '("2 to 3 years" OR "2-3 years" OR "2 – 3 years")',
+        "patterns": [
+            re.compile(r"2\s*[-–to]+\s*3\s*years?", re.I),
+            re.compile(r"2\s*[-–]\s*3", re.I),
+        ],
+    },
+    "2-4": {
+        "query": '("2 to 4 years" OR "2-4 years" OR "2 – 4 years" OR "2+ years" OR "3+ years")',
+        "patterns": [
+            re.compile(r"2\s*[-–to]+\s*4\s*years?", re.I),
+            re.compile(r"2\s*[-–]\s*4", re.I),
+            re.compile(r"2\+\s*years?", re.I),
+            re.compile(r"3\+\s*years?", re.I),
+            re.compile(r"2\s*to\s*4", re.I),
+        ],
+    },
+    "3+": {
+        "query": '("3+ years" OR "3 years" OR "3 to 5 years" OR "3-5 years")',
+        "patterns": [
+            re.compile(r"3\+", re.I),
+            re.compile(r"3\s*years?", re.I),
+            re.compile(r"3\s*[-–to]+\s*[456]\s*years?", re.I),
+        ],
+    },
+    "3-5": {
+        "query": '("3 to 5 years" OR "3-5 years" OR "3 – 5 years")',
+        "patterns": [
+            re.compile(r"3\s*[-–to]+\s*5\s*years?", re.I),
+            re.compile(r"3\s*[-–]\s*5", re.I),
+        ],
+    },
+}
+
+
+def _normalize_experience_range(value: str | None) -> str:
+    v = (value or "2-4").strip().lower().replace(" ", "")
+    aliases = {
+        "any": "any",
+        "all": "any",
+        "2+": "2+",
+        "2plus": "2+",
+        "2-3": "2-3",
+        "2to3": "2-3",
+        "2-4": "2-4",
+        "2to4": "2-4",
+        "3+": "3+",
+        "3plus": "3+",
+        "3-5": "3-5",
+        "3to5": "3-5",
+    }
+    return aliases.get(v, "2-4")
+
+
+def _matches_experience_range(text: str, experience_range: str) -> bool:
+    """If range is 'any', always pass. If post has no experience text, allow through."""
+    period = _normalize_experience_range(experience_range)
+    if period == "any":
+        return True
+
+    cfg = EXPERIENCE_RANGES.get(period) or EXPERIENCE_RANGES["2-4"]
+    patterns = cfg["patterns"]
+    if not patterns:
+        return True
+
+    # Soft: if text mentions any years figure, require match; else allow (often missing in snippets)
+    has_any_years = bool(re.search(r"\d+\s*(\+|to|[-–])?\s*\d*\s*years?", text, re.I))
+    if not has_any_years:
+        return True
+    return any(p.search(text) for p in patterns)
+
 
 def _is_linkedin_post_url(url: str) -> bool:
     if not url:
@@ -287,7 +372,11 @@ def _score_post(text: str, role: str | None, email: str | None) -> float:
     return min(score, 1.0)
 
 
-def _parse_search_result(item: dict, roles: list[str]) -> dict | None:
+def _parse_search_result(
+    item: dict,
+    roles: list[str],
+    experience_range: str = "2-4",
+) -> dict | None:
     url = item.get("href") or item.get("link") or item.get("url") or ""
     title = item.get("title") or ""
     snippet = item.get("body") or item.get("snippet") or ""
@@ -300,16 +389,16 @@ def _parse_search_result(item: dict, roles: list[str]) -> dict | None:
     if not role:
         return None
 
-    # Skip job seekers ("looking for Java Developer role")
     if _is_job_seeker_post(combined):
         return None
 
-    # India only — drop US/UK/foreign posts
     if not _is_india_eligible(combined):
         return None
 
-    # Must be recruiter hiring, not generic #hiring hashtag
     if not (_has_strong_hiring_signal(combined) or (_has_hr_signal(combined) and _has_experience_match(combined))):
+        return None
+
+    if not _matches_experience_range(combined, experience_range):
         return None
 
     emails = _extract_emails_from_text(combined)
@@ -351,62 +440,150 @@ def _parse_search_result(item: dict, roles: list[str]) -> dict | None:
     }
 
 
-def _build_queries(roles: list[str]) -> list[str]:
+TIME_PERIOD_MAP = {
+    "day": "d",
+    "week": "w",
+    "month": "m",
+}
+
+
+def _normalize_time_period(time_period: str | None) -> str:
+    period = (time_period or "week").strip().lower()
+    if period in ("1d", "past_day", "d", "1 day", "past 1 day"):
+        return "day"
+    if period in ("1w", "past_week", "w", "1 week", "past 1 week"):
+        return "week"
+    if period in ("1m", "past_month", "m", "1 month", "past 1 month"):
+        return "month"
+    if period in TIME_PERIOD_MAP:
+        return period
+    return "week"
+
+
+def _build_queries(roles: list[str], experience_range: str = "2-4") -> list[str]:
     india = '("India" OR Bangalore OR Pune OR Hyderabad OR Mumbai OR Chennai OR Noida OR Gurgaon)'
-    exp = '("2 to 4 years" OR "2-4 years" OR "3+ years" OR "2+ years")'
     hiring = '("hiring" OR "share your resume" OR "we are hiring" OR recruiter OR "talent acquisition")'
+    period = _normalize_experience_range(experience_range)
+    exp_q = (EXPERIENCE_RANGES.get(period) or EXPERIENCE_RANGES["2-4"])["query"]
 
     queries = []
     for role in roles:
-        queries.append(
-            f'site:linkedin.com/posts "{role}" {india} {exp} {hiring}'
-        )
-        queries.append(
-            f'site:linkedin.com/posts {role} India hiring "share resume" recruiter'
-        )
+        if exp_q:
+            queries.append(f'site:linkedin.com/posts "{role}" {india} {exp_q} {hiring}')
+        else:
+            queries.append(f'site:linkedin.com/posts "{role}" {india} {hiring}')
+        queries.append(f'site:linkedin.com/posts {role} India hiring "share resume" recruiter')
         queries.append(
             f'site:linkedin.com/posts "{role}" Bangalore OR Pune hiring "interested candidates"'
         )
     return queries
 
 
-def _search_sync(roles: list[str], max_results_per_query: int) -> list[dict]:
-    try:
-        from ddgs import DDGS
-    except ImportError as e:
-        raise RuntimeError(
-            "ddgs is not installed. Run: pip install ddgs"
-        ) from e
+def _search_sync(
+    roles: list[str],
+    max_results_per_query: int,
+    time_period: str = "week",
+    experience_range: str = "2-4",
+) -> list[dict]:
+    from app.services.search_providers import search_web
+
+    period = _normalize_time_period(time_period)
+    timelimit = TIME_PERIOD_MAP[period]
+    exp_range = _normalize_experience_range(experience_range)
 
     seen_urls: set[str] = set()
     parsed: list[dict] = []
+    providers_used: set[str] = set()
 
-    with DDGS() as ddgs:
-        for query in _build_queries(roles):
-            try:
-                results = ddgs.text(query, max_results=max_results_per_query)
-            except Exception:
+    for query in _build_queries(roles, exp_range):
+        try:
+            results, provider = search_web(
+                query,
+                max_results=max_results_per_query,
+                timelimit=timelimit,
+            )
+            providers_used.add(provider)
+        except Exception:
+            continue
+
+        for item in results:
+            url = item.get("href") or item.get("link") or ""
+            if not url or url in seen_urls:
                 continue
+            seen_urls.add(url)
 
-            for item in results:
-                url = item.get("href") or item.get("link") or ""
-                if not url or url in seen_urls:
-                    continue
-                seen_urls.add(url)
-
-                post = _parse_search_result(item, roles)
-                if post:
-                    parsed.append(post)
+            post = _parse_search_result(item, roles, exp_range)
+            if post:
+                post["time_period"] = period
+                post["provider"] = provider
+                parsed.append(post)
 
     parsed.sort(key=lambda p: p["score"], reverse=True)
+    # Attach provider info on first item for response metadata (router may ignore)
+    if parsed:
+        parsed[0]["_providers"] = sorted(providers_used)
     return parsed
 
 
 async def search_linkedin_posts(
     roles: list[str] | None = None,
     max_results: int = 30,
+    time_period: str = "week",
+    experience_range: str = "2-4",
 ) -> list[dict]:
     roles = roles or DEFAULT_ROLES
+    period = _normalize_time_period(time_period)
+    exp_range = _normalize_experience_range(experience_range)
     per_query = max(5, max_results // max(len(roles), 1))
+    return await asyncio.to_thread(_search_sync, roles, per_query, period, exp_range)
 
-    return await asyncio.to_thread(_search_sync, roles, per_query)
+
+def parse_pasted_post(text: str, url: str | None = None) -> dict:
+    """Parse pasted LinkedIn post text (and optional URL) into structured fields."""
+    combined = (text or "").strip()
+    link = (url or "").strip()
+
+    if not link and combined.startswith("http") and "linkedin.com" in combined.split()[0]:
+        link = combined.split()[0]
+        combined = combined[len(link):].strip()
+
+    emails = _extract_emails_from_text(combined)
+    email = emails[0] if emails else None
+    if email and not _is_valid_recruiter_email(email):
+        email = None
+
+    role = detect_role_from_text(combined) or "Java Developer"
+    exp = extract_experience(combined)
+    company = _extract_company(combined, email)
+    poster = _extract_poster_name(combined[:80], combined)
+    score = _score_post(combined, role, email)
+
+    normalized = normalize_extracted({
+        "role": role,
+        "company": company,
+        "recruiter_email": email,
+        "recruiter_name": poster,
+        "experience_required": exp,
+        "job_description": combined[:500] if combined else None,
+        "source_platform": "LinkedIn",
+        "content_summary": combined[:300] if combined else None,
+        "confidence": score if combined else 0.3,
+        "raw_text": combined[:800],
+    })
+
+    post_id = re.sub(r"[^a-zA-Z0-9]", "", link or combined)[-16:] or str(abs(hash(combined or link)))
+    return {
+        "id": post_id,
+        "url": link,
+        "title": (combined[:80] + "…") if len(combined) > 80 else (combined or link or "Pasted post"),
+        "snippet": combined,
+        "role": normalized.get("role"),
+        "company": normalized.get("company"),
+        "recruiter_email": normalized.get("recruiter_email"),
+        "recruiter_name": normalized.get("recruiter_name"),
+        "experience_required": normalized.get("experience_required"),
+        "score": score,
+        "has_email": bool(normalized.get("recruiter_email")),
+        "is_hr_post": _has_hr_signal(combined) if combined else False,
+    }
+

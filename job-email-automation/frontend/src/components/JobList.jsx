@@ -71,6 +71,14 @@ export default function JobList({
                   title={isSent ? 'Already sent' : 'Select to process'}
                 />
                 <span style={styles.filename}>{job.filename}</span>
+                {job.has_screenshot && (
+                  <img
+                    src={`/api/jobs/${job.id}/screenshot`}
+                    alt=""
+                    style={styles.thumb}
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
+                )}
                 {job.source_url && (
                   <a
                     href={job.source_url}
@@ -96,6 +104,15 @@ export default function JobList({
                     Preview & Send
                   </button>
                 )}
+                {job.status === 'failed' && (job.email?.to_email || job.email_ai?.to_email) && (
+                  <button
+                    className="btn-primary"
+                    style={{ padding: '6px 12px', fontSize: 12, background: '#ea580c' }}
+                    onClick={() => onPreview(job.id)}
+                  >
+                    Retry Send
+                  </button>
+                )}
                 <button
                   className="btn-secondary"
                   style={{ padding: '6px 12px', fontSize: 12 }}
@@ -114,7 +131,12 @@ export default function JobList({
             </div>
 
             {isSent && (
-              <p style={styles.sentNote}>✓ Email already sent — skipped on next Extract & Generate</p>
+              <p style={styles.sentNote}>
+                ✓ Email already sent
+                {job.outcome && job.outcome !== 'none' ? ` · ${job.outcome.replace('_', ' ')}` : ' · waiting'}
+                {job.sent_at ? ` · ${job.sent_at}` : ''}
+                {' — update outcome in Tracker tab'}
+              </p>
             )}
 
             {job.extracted && (
@@ -217,6 +239,10 @@ const styles = {
   },
   cardTitle: { display: 'flex', alignItems: 'center', gap: 10 },
   filename: { fontWeight: 500 },
+  thumb: {
+    width: 40, height: 40, objectFit: 'cover', borderRadius: 6,
+    border: '1px solid var(--border)',
+  },
   sourceLink: { fontSize: 14, color: 'var(--accent)', textDecoration: 'none' },
   cardActions: { display: 'flex', gap: 8 },
   sentNote: { fontSize: 12, color: 'var(--success)', marginTop: 8 },

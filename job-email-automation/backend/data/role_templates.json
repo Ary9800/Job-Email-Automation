@@ -1,0 +1,32 @@
+{
+  "templates": [
+    {
+      "id": "default",
+      "label": "Default",
+      "role_keywords": [],
+      "subject_template": "Application for {role} at {company}",
+      "body_template": null
+    },
+    {
+      "id": "java-backend",
+      "label": "Java Backend",
+      "role_keywords": [
+        "backend",
+        "java backend",
+        "spring"
+      ],
+      "subject_template": "Application for {role} at {company}",
+      "body_template": "Hi {recruiter_name},\n\nI came across your LinkedIn post regarding the opening for the {role} role at {company} and found it closely aligned with my Java backend experience.\n\n{experience_summary}\n\nI have hands-on experience with Spring Boot, REST APIs, and SQL-backed services. Please find my resume attached.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\n{sender_name}"
+    },
+    {
+      "id": "fullstack",
+      "label": "Java Full Stack",
+      "role_keywords": [
+        "full stack",
+        "fullstack"
+      ],
+      "subject_template": "Application for {role} at {company}",
+      "body_template": "Hi {recruiter_name},\n\nI came across your LinkedIn post regarding the opening for the {role} role at {company} and found the opportunity closely aligned with my full-stack Java background.\n\n{experience_summary}\n\nPlease find my resume attached for your reference.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\n{sender_name}"
+    }
+  ]
+}

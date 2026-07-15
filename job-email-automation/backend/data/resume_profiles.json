@@ -1,0 +1,25 @@
+{
+  "profiles": [
+    {
+      "id": "default",
+      "label": "Default / Java Full Stack",
+      "filename": null,
+      "role_keywords": [
+        "java",
+        "full stack",
+        "fullstack",
+        "software engineer"
+      ]
+    },
+    {
+      "id": "backend",
+      "label": "Backend / Java Backend",
+      "filename": null,
+      "role_keywords": [
+        "backend",
+        "java backend",
+        "spring"
+      ]
+    }
+  ]
+}

@@ -1,11 +1,14 @@
 import uuid
+from datetime import datetime
 from pathlib import Path
 
 from fastapi import APIRouter, File, HTTPException, Query, UploadFile
+from fastapi.responses import FileResponse
 
-from app.config import RESUME_DIR, UPLOAD_DIR, ensure_default_resume_in_store, settings
+from app.config import RESUME_DIR, UPLOAD_DIR, ensure_default_resume_in_store, resolve_resume_path, settings
 from app.models import (
     BatchSendRequest,
+    EmailTemplate,
     ExtractedJobData,
     FixEmailRequest,
     GenerateEmailRequest,
@@ -13,16 +16,58 @@ from app.models import (
     JobItem,
     JobStatus,
     ProcessRequest,
+    SaveDraftRequest,
     SendEmailRequest,
 )
+from app.services import job_store
 from app.services.email_generator import generate_both_emails
 from app.services.email_sender import send_email_with_resume
 from app.services.extractor import extract_job_from_screenshot
-from app.services import job_store
 from app.services.llm import ollama
+from app.services.phase3_store import pick_resume_for_role, pick_template_for_role
 
 router = APIRouter(prefix="/api", tags=["jobs"])
 
+
+def _resolve_template_for_job(job: JobItem, fallback: EmailTemplate) -> EmailTemplate:
+    role = job.extracted.role if job.extracted else None
+    role_tpl = pick_template_for_role(role)
+    if not role_tpl or not role_tpl.get("body_template"):
+        return fallback
+    return EmailTemplate(
+        subject_template=role_tpl.get("subject_template") or fallback.subject_template,
+        body_template=role_tpl["body_template"],
+    )
+
+
+def _resolve_resume_for_job(job: JobItem, explicit: str | None = None) -> str | None:
+    """Pick resume file that actually exists on disk."""
+    # Prefer explicitly requested file if it exists
+    if explicit:
+        path = resolve_resume_path(explicit)
+        if path and path.parent == RESUME_DIR:
+            return path.name
+        if path:
+            stored, _ = ensure_default_resume_in_store()
+            return stored or path.name
+
+    # Job already has a valid resume from generate/import
+    if job.resume_filename:
+        path = resolve_resume_path(job.resume_filename)
+        if path:
+            return path.name if path.parent == RESUME_DIR else job.resume_filename
+
+    role = job.extracted.role if job.extracted else None
+    picked = pick_resume_for_role(role)
+    if picked and resolve_resume_path(picked):
+        return picked
+
+    resume, _ = ensure_default_resume_in_store()
+    if resume:
+        return resume
+
+    path = resolve_resume_path(None)
+    return path.name if path and path.parent == RESUME_DIR else (str(path) if path else None)
 
 def _get_job(job_id: str) -> JobItem:
     job = job_store.get(job_id)
@@ -89,12 +134,40 @@ async def upload_resume(file: UploadFile = File(...)):
 
 @router.get("/jobs")
 async def list_jobs():
-    return {"jobs": list(job_store.get_all().values())}
+    jobs = list(job_store.get_all().values())
+    # Annotate whether a screenshot file exists (for UI)
+    result = []
+    for job in jobs:
+        data = job.model_dump(mode="json")
+        data["has_screenshot"] = any(UPLOAD_DIR.glob(f"{job.id}.*"))
+        result.append(data)
+    return {"jobs": result}
 
 
 @router.get("/jobs/{job_id}")
 async def get_job(job_id: str):
     return _get_job(job_id)
+
+
+@router.get("/jobs/{job_id}/screenshot")
+async def get_job_screenshot(job_id: str):
+    """Serve the uploaded screenshot image for review UI."""
+    _get_job(job_id)
+    paths = list(UPLOAD_DIR.glob(f"{job_id}.*"))
+    if not paths:
+        raise HTTPException(status_code=404, detail="No screenshot for this job")
+
+    path = paths[0]
+    media = {
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".webp": "image/webp",
+        ".gif": "image/gif",
+        ".bmp": "image/bmp",
+    }.get(path.suffix.lower(), "application/octet-stream")
+
+    return FileResponse(path, media_type=media, filename=path.name)
 
 
 @router.delete("/jobs/{job_id}")
@@ -158,17 +231,54 @@ async def generate_job_email(job_id: str, request: GenerateEmailRequest):
         raise HTTPException(status_code=400, detail="Extract job details first")
 
     try:
+        template = _resolve_template_for_job(job, request.template)
         ai_email, static_email = generate_both_emails(
-            job.extracted, request.sender, request.template, request.candidate
+            job.extracted, request.sender, template, request.candidate
         )
         job.email_ai = ai_email
         job.email_static = static_email
         job.email = ai_email
+        job.resume_filename = _resolve_resume_for_job(job)
         job.status = JobStatus.EMAIL_GENERATED
         job.error = None if ai_email.to_email else "Generated email but recipient address is missing"
     except Exception as e:
         job.status = JobStatus.FAILED
         job.error = str(e)
+
+    return _save(job)
+
+
+@router.patch("/jobs/{job_id}/draft")
+async def save_job_draft(job_id: str, request: SaveDraftRequest):
+    """Persist review-panel edits so retries keep the same subject/body/to."""
+    job = _get_job(job_id)
+
+    base = job.email or GeneratedEmail(
+        subject="",
+        body="",
+        to_email=job.extracted.recruiter_email if job.extracted else "",
+        to_name=job.extracted.recruiter_name if job.extracted else None,
+    )
+
+    if request.subject is not None:
+        base.subject = request.subject
+    if request.body is not None:
+        base.body = request.body
+    if request.to_email is not None:
+        base.to_email = request.to_email
+    if request.to_name is not None:
+        base.to_name = request.to_name
+    if request.source:
+        base.source = request.source
+
+    job.email = base
+
+    # Keep job retryable after a previous send failure
+    if job.status == JobStatus.FAILED and base.to_email and base.subject:
+        job.status = JobStatus.EMAIL_GENERATED
+        # Keep last error visible until next successful send
+        if job.error and not job.error.startswith("Last send failed:"):
+            job.error = f"Last send failed: {job.error}"
 
     return _save(job)
 
@@ -194,17 +304,27 @@ async def send_job_email(job_id: str, request: SendEmailRequest):
     if request.to_email:
         email.to_email = request.to_email
 
-    resume_filename = request.resume_filename
-    if not resume_filename:
-        resume_filename, _ = ensure_default_resume_in_store()
+    # Always persist review edits before attempting send (needed for retries)
+    job.email = email
+    job.resume_filename = _resolve_resume_for_job(job, request.resume_filename)
+    if not resolve_resume_path(job.resume_filename):
+        raise HTTPException(
+            status_code=400,
+            detail="No resume file found. Set DEFAULT_RESUME_PATH in backend/.env to a real PDF path, or upload a resume in Settings.",
+        )
+    _save(job)
 
     try:
-        await send_email_with_resume(email, request.sender, request.smtp, resume_filename)
+        await send_email_with_resume(email, request.sender, request.smtp, job.resume_filename)
         job.status = JobStatus.SENT
+        job.outcome = "waiting"
+        job.sent_at = datetime.now().isoformat(timespec="seconds")
+        job.outcome_updated_at = job.sent_at
         job.error = None
     except Exception as e:
         job.status = JobStatus.FAILED
         job.error = str(e)
+        # Stay retryable — email draft remains saved
         _save(job)
         raise HTTPException(status_code=500, detail=str(e)) from e
 
@@ -234,25 +354,29 @@ async def process_batch(
             continue
 
         try:
-            # LinkedIn post imports already have extracted data — skip screenshot OCR
-            if job.source_type == "linkedin_post" and job.extracted:
+            # LinkedIn / pasted imports already have extracted data — skip screenshot OCR
+            if job.source_type in ("linkedin_post", "pasted") and job.extracted:
                 if not job.extracted.recruiter_email:
                     job.status = JobStatus.FAILED
                     job.error = "No recruiter email found in post — add manually"
                 else:
+                    template = _resolve_template_for_job(job, request.template)
                     ai_email, static_email = generate_both_emails(
-                        job.extracted, request.sender, request.template, request.candidate
+                        job.extracted, request.sender, template, request.candidate
                     )
                     job.email_ai = ai_email
                     job.email_static = static_email
                     job.email = ai_email
+                    job.resume_filename = _resolve_resume_for_job(job, resume_filename)
                     job.status = JobStatus.EMAIL_GENERATED
 
                     if request.auto_send:
                         await send_email_with_resume(
-                            job.email, request.sender, request.smtp, resume_filename
+                            job.email, request.sender, request.smtp, job.resume_filename
                         )
                         job.status = JobStatus.SENT
+                        job.outcome = "waiting"
+                        job.sent_at = datetime.now().isoformat(timespec="seconds")
             else:
                 image_paths = list(UPLOAD_DIR.glob(f"{job_id}.*"))
                 if image_paths:
@@ -260,19 +384,23 @@ async def process_batch(
                     job.status = JobStatus.EXTRACTED
 
                 if job.extracted and job.extracted.recruiter_email:
+                    template = _resolve_template_for_job(job, request.template)
                     ai_email, static_email = generate_both_emails(
-                        job.extracted, request.sender, request.template, request.candidate
+                        job.extracted, request.sender, template, request.candidate
                     )
                     job.email_ai = ai_email
                     job.email_static = static_email
                     job.email = ai_email
+                    job.resume_filename = _resolve_resume_for_job(job, resume_filename)
                     job.status = JobStatus.EMAIL_GENERATED
 
                     if request.auto_send:
                         await send_email_with_resume(
-                            job.email, request.sender, request.smtp, resume_filename
+                            job.email, request.sender, request.smtp, job.resume_filename
                         )
                         job.status = JobStatus.SENT
+                        job.outcome = "waiting"
+                        job.sent_at = datetime.now().isoformat(timespec="seconds")
                 elif job.extracted:
                     job.status = JobStatus.FAILED
                     job.error = "No recruiter email found in screenshot"
@@ -281,7 +409,9 @@ async def process_batch(
             job.error = str(e)
 
         _save(job)
-        results.append(job)
+        data = job.model_dump(mode="json")
+        data["has_screenshot"] = any(UPLOAD_DIR.glob(f"{job.id}.*"))
+        results.append(data)
 
     return {"jobs": results, "processed": len(results)}
 

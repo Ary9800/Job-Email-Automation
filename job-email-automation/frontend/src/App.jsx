@@ -12,6 +12,7 @@ import {
 } from './api'
 import ScreenshotUpload from './components/ScreenshotUpload'
 import FindJobs from './components/FindJobs'
+import TrackerPanel from './components/TrackerPanel'
 import JobList from './components/JobList'
 import SettingsPanel from './components/SettingsPanel'
 import EmailPreviewModal from './components/EmailPreviewModal'
@@ -59,7 +60,7 @@ export default function App() {
   const [previewOpen, setPreviewOpen] = useState(false)
   const [previewJobId, setPreviewJobId] = useState(null)
   const [selectedIds, setSelectedIds] = useState(new Set())
-  const [activeTab, setActiveTab] = useState('upload') // upload | find
+  const [activeTab, setActiveTab] = useState('upload') // upload | find | tracker
 
   const saveSettings = useCallback((next) => {
     setSettings(next)
@@ -134,22 +135,50 @@ export default function App() {
     setSelectedIds(new Set(ids))
   }, [])
 
-  const handleImportPosts = (importedJobs) => {
-    setJobs((prev) => [...prev, ...importedJobs])
+  const handleImportPosts = (result) => {
+    const importedJobs = result?.jobs || (Array.isArray(result) ? result : [])
+    const generated = result?.generated ?? importedJobs.filter((j) => j.status === 'email_generated').length
+    const skippedUrl = result?.skipped_duplicate_url || 0
+    const skippedEmail = result?.skipped_duplicate_email || 0
+
+    if (importedJobs.length === 0) {
+      const skipMsg = [
+        skippedUrl ? `${skippedUrl} duplicate URL` : null,
+        skippedEmail ? `${skippedEmail} duplicate email` : null,
+      ].filter(Boolean).join(', ')
+      showMessage(skipMsg ? `Nothing new imported (${skipMsg})` : 'Nothing imported', 'warning')
+      return
+    }
+
+    setJobs((prev) => {
+      const existing = new Set(prev.map((j) => j.id))
+      const fresh = importedJobs.filter((j) => !existing.has(j.id))
+      return [...prev, ...fresh]
+    })
     setSelectedIds((prev) => {
       const next = new Set(prev)
       importedJobs.forEach((j) => next.add(j.id))
       return next
     })
-    setActiveTab('upload')
-    showMessage(`Imported ${importedJobs.length} LinkedIn post(s) — click Extract & Generate`, 'success')
+    // Stay on Find tab so remaining search results stay visible
+
+    const parts = [`Imported ${importedJobs.length}`]
+    if (generated) parts.push(`${generated} email(s) ready`)
+    if (skippedUrl) parts.push(`${skippedUrl} URL skipped`)
+    if (skippedEmail) parts.push(`${skippedEmail} email skipped`)
+    showMessage(parts.join(' · '), 'success')
+
+    if (generated > 0) {
+      setPreviewJobId(null)
+      setPreviewOpen(true)
+    }
   }
 
   const handleUpload = async (files) => {
     setLoading(true)
     try {
       const result = await uploadScreenshots(files)
-      const newJobs = result.jobs || []
+      const newJobs = (result.jobs || []).map((j) => ({ ...j, has_screenshot: true }))
       setJobs((prev) => [...prev, ...newJobs])
       setSelectedIds((prev) => {
         const next = new Set(prev)
@@ -262,7 +291,8 @@ export default function App() {
         ? 'Session expired — re-upload screenshots and click Extract & Generate again.'
         : e.message
       showMessage(msg, 'error')
-      refreshJobs()
+      // Refresh so failed status + saved draft load for Retry
+      await refreshJobs()
       throw e
     } finally {
       setSending(false)
@@ -270,7 +300,10 @@ export default function App() {
   }
 
   const openPreview = (jobId = null) => {
-    const ready = jobs.filter((j) => j.status === 'email_generated' && j.email?.to_email)
+    const ready = jobs.filter((j) =>
+      (j.status === 'email_generated' || j.status === 'failed')
+      && (j.email?.to_email || j.email_ai?.to_email),
+    )
     if (ready.length === 0) {
       showMessage('No emails to preview. Run Extract & Generate first.', 'error')
       return
@@ -387,14 +420,27 @@ export default function App() {
             >
               Find on LinkedIn
             </button>
+            <button
+              style={{ ...styles.tab, ...(activeTab === 'tracker' ? styles.tabActive : {}) }}
+              onClick={() => setActiveTab('tracker')}
+            >
+              Tracker & Analytics
+            </button>
           </div>
 
-          {activeTab === 'upload' ? (
+          {activeTab === 'upload' && (
             <ScreenshotUpload onUpload={handleUpload} disabled={loading} />
-          ) : (
-            <FindJobs onImported={handleImportPosts} disabled={loading} />
+          )}
+          {/* Keep FindJobs mounted so search results survive tab switches */}
+          <div style={{ display: activeTab === 'find' ? 'block' : 'none' }}>
+            <FindJobs onImported={handleImportPosts} disabled={loading} settings={settings} />
+          </div>
+          {activeTab === 'tracker' && (
+            <TrackerPanel onJobsChanged={refreshJobs} />
           )}
 
+          {activeTab !== 'tracker' && (
+            <>
           <div style={styles.actionBar}>
             <button
               className="btn-primary"
@@ -406,7 +452,10 @@ export default function App() {
             <button
               className="btn-secondary"
               onClick={openPreview}
-              disabled={loading || !jobs.some((j) => j.status === 'email_generated')}
+              disabled={loading || !jobs.some((j) =>
+                (j.status === 'email_generated' || j.status === 'failed')
+                && (j.email?.to_email || j.email_ai?.to_email),
+              )}
             >
               Review & Send Emails
             </button>
@@ -421,6 +470,8 @@ export default function App() {
             onPreview={openPreview}
             onFixEmail={handleFixEmail}
           />
+            </>
+          )}
         </main>
       </div>
 
@@ -433,6 +484,9 @@ export default function App() {
           onClose={() => { setPreviewOpen(false); setPreviewJobId(null) }}
           onSend={handleApproveAndSend}
           sending={sending}
+          onJobUpdated={(updated) => {
+            setJobs((prev) => prev.map((j) => (j.id === updated.id ? { ...j, ...updated } : j)))
+          }}
         />
       )}
     </div>

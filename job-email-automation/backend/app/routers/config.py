@@ -45,6 +45,8 @@ async def get_app_config():
             "smtp": smtp_configured,
             "sender": sender_configured,
             "resume": resume_configured,
+            "serpapi": bool(settings.serpapi_api_key),
             "all_ready": smtp_configured and sender_configured and resume_configured,
         },
+        "bookmarklet_url": "http://localhost:8000/api/find-jobs/bookmarklet",
     }

@@ -1,1 +1,414 @@
-{}
+{
+  "d153ddb5-ca71-4d87-82fe-b3cdfa41ec2a": {
+    "id": "d153ddb5-ca71-4d87-82fe-b3cdfa41ec2a",
+    "filename": "Media (3).jpg",
+    "status": "sent",
+    "source_type": "screenshot",
+    "source_url": null,
+    "extracted": {
+      "recruiter_email": "anuvarshini.v@cintal.com",
+      "recruiter_name": "Fastz",
+      "role": "Java Developer",
+      "company": "Cintal",
+      "job_description": null,
+      "location": "Last Date for applying",
+      "source_platform": "LinkedIn",
+      "skills_required": [
+        "Java Developer (Spring Boot &AWS)",
+        "Java Developer with up to 5",
+        "Java and Spring Boot.",
+        "Aws",
+        "Java application",
+        "AWs Cloud",
+        "JAVA -(Years of experience)-(Location)."
+      ],
+      "experience_required": "2 to 5 years",
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": null,
+      "confidence": 0.7,
+      "raw_text": "Fastz4noars\nANUVARSHINI VP3rd+\n+ Follow\nJuniorHR Recruiter at Cintal technolo...\n2h\u00b7?\n#HIRING\nJob Title: Java Developer (Spring Boot &AWS)\nWe are looking for a talented Java Developer with up to 5\nyears of experience to join our growing engineering team.\nKey Responsibilities:\nDesign, develop, and maintain scalable microservices usin\nJava and Spring Boot.\n Build high-performance, secure, and reliable backend\napplications.\nDevelop and deploy cloud-native applications on the Aws\nplatform.\n+Collaborate with cross-functional teams to design, develc\ntest, and deliver software solutions.\nWriteclean,maintainable,and well-documentedcodewhi\nfollowing industry best practices.\nRequired Skills & Qualifications:\n+2 to 5 years of hands-on experience in Java application\ndevelopment.\n+Strong expertise in J"
+    },
+    "email": {
+      "subject": "JAVA_3year_Pune",
+      "body": "Hi Anuvarshini,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Cintal and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, MIcroservices,REST APIs, AWS, SQL, and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nCurrent CTC: 7Lpa\nExpected CTC: 13-15Lpa\nNotice Period: 30 Days\nLocation: Pune\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "anuvarshini.v@cintal.com",
+      "to_name": "Fastz",
+      "source": "static"
+    },
+    "email_ai": {
+      "subject": "Application for Java Developer at Cintal",
+      "body": "Hi Fastz,\nI came across your LinkedIn post regarding the opening for the Java Developer role at Cintal.\n\nI am confident that my skills in Java, Spring Boot, and SQL will make me a strong fit for this position. My experience in developing full-stack Java applications aligns with the requirements of the job description.\n\nPlease find my resume attached.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "anuvarshini.v@cintal.com",
+      "to_name": "Fastz",
+      "source": "ai"
+    },
+    "email_static": {
+      "subject": "Application for Java Developer at Cintal",
+      "body": "Hi Fastz,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Cintal and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, REST APIs, SQL, and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "anuvarshini.v@cintal.com",
+      "to_name": "Fastz",
+      "source": "static"
+    },
+    "error": null,
+    "outcome": "waiting",
+    "sent_at": "2026-07-15T15:05:57",
+    "outcome_updated_at": "2026-07-15T15:05:57",
+    "notes": null,
+    "resume_filename": null
+  },
+  "f73586e4-c4be-4f32-9332-62a531afe117": {
+    "id": "f73586e4-c4be-4f32-9332-62a531afe117",
+    "filename": "Media (2).jpg",
+    "status": "sent",
+    "source_type": "screenshot",
+    "source_url": null,
+    "extracted": {
+      "recruiter_email": "unnathi@creanttechnologies.com",
+      "recruiter_name": "Unnathi",
+      "role": "Java Developer",
+      "company": "Creanttechnologies",
+      "job_description": null,
+      "location": "Bangalore\nImmediateJoinersPreferred\nQualification",
+      "source_platform": "LinkedIn",
+      "skills_required": [
+        "Java Developer (2-4 Years Experience)",
+        "JavaDeveloper with2+years",
+        "Java&Advanced Java",
+        "Spring Boot&SpringFramework",
+        "SQL (MySQL/PostgreSQL)"
+      ],
+      "experience_required": "2+years",
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": null,
+      "confidence": 0.7,
+      "raw_text": "UnnathiYGowda\u00b72nd\n+Follow\n...\nHR Talent Acquisition&Recruitment ..\n35m?\nWe're Hiring - Java Developer (2-4 Years Experience) \nLocation:Bangalore\nImmediateJoinersPreferred\nQualification:BE/B.Tech\nWeare lookingfor apassionate JavaDeveloper with2+years\nof experience to join our team and contribute to building\nscalable, high-performance applications.\nRequired Skills:\nCoreJava&Advanced Java\nSpring Boot&SpringFramework\nREsTAPls&Microservices\nReactjs and/or Angular\nHibernate/JPA\nSQL (MySQL/PostgreSQL)\nGit &Version Control\nIf you're looking for an exciting opportunity and canjoin\nimmediately,we'd love to connect with you!\n Share your updated resume at\nunnathi@creanttechnologies.com"
+    },
+    "email": {
+      "subject": "Application for Java Developer at creanttechnologies.com",
+      "body": "Hi Unnathi,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Creanttechnologies and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,Microservices, AWS, REST APIs, SQL,  Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "unnathi@creanttechnologies.com",
+      "to_name": "Unnathi",
+      "source": "ai"
+    },
+    "email_ai": {
+      "subject": "Application for Java Developer at your organization",
+      "body": "Hi Unnathi,\nI came across your LinkedIn post regarding the opening for the Java Developer role at Creanttechnologies.\nI am confident that my 3+ years of experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, REST APIs, SQL, and frontend frameworks, make me a suitable candidate for this position. Additionally, I have skills matching the required ones, including Java, Spring Boot, and SQL.\nPlease find my resume attached.\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "unnathi@creanttechnologies.com",
+      "to_name": "Unnathi",
+      "source": "ai"
+    },
+    "email_static": {
+      "subject": "Application for Java Developer at your organization",
+      "body": "Hi Unnathi,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Creanttechnologies and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, REST APIs, SQL, and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "unnathi@creanttechnologies.com",
+      "to_name": "Unnathi",
+      "source": "static"
+    },
+    "error": null,
+    "outcome": "waiting",
+    "sent_at": "2026-07-15T15:02:47",
+    "outcome_updated_at": "2026-07-15T15:02:47",
+    "notes": null,
+    "resume_filename": null
+  },
+  "96e4244a-f0a8-4f07-b973-302ca8d8e1ce": {
+    "id": "96e4244a-f0a8-4f07-b973-302ca8d8e1ce",
+    "filename": "Media (1).jpg",
+    "status": "sent",
+    "source_type": "screenshot",
+    "source_url": null,
+    "extracted": {
+      "recruiter_email": "ittomiraj.kapadia@softwaresyncsmart.comKnow",
+      "recruiter_name": "Miraj Kapadia",
+      "role": "Java Developer",
+      "company": "Softwaresyncsmart",
+      "job_description": null,
+      "location": "Ahmedabad",
+      "source_platform": "LinkedIn",
+      "skills_required": [
+        "Java Developer (1-2 Years Experience)",
+        "Java",
+        "Java development",
+        "Java and Object-Oriented",
+        "Spring Boot and Spring MvC",
+        "SQL",
+        "SQL/PostgreSQL)"
+      ],
+      "experience_required": "2 Years",
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": null,
+      "confidence": 0.7,
+      "raw_text": "Miraj Kapadia in\u00b72nd\n+ Follow\nChief Executive Officer[SoftwareSy...\nVisitmywebsite\n4m\u00b7?\nWe're Hiring: Java Developer (1-2 Years Experience)\nSoftwareSync Smart is looking for a passionate Java\nDeveloper with 1-2 years of experience to join our growing\nteam.\nRequirements:\n1-2 years of hands-on experience in Java development\nStrong knowledge of Core Java and Object-Oriented\nProgramming (OOP)\nVHands-on experience withSpring Boot and Spring MvC\nArchitecture\nV Experience with Hibernate, Spring Data JPA, and SQL\n(MySQL/PostgreSQL)\nExperience in developing RESTful APls\nFamiliarity with Git and Agile development practices\nGood problem-solving and communication skills\nExperience with Reactjs will be a plus\nLocation: Ahmedabad (Work from Office)\nExperience:1-2Years\nEmployment Type:Full-time\ndynamic t"
+    },
+    "email": {
+      "subject": "Application for Java Developer  at  Softwaresyncsmart",
+      "body": "Hi Miraj,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Softwaresyncsmart and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, REST APIs, SQL, Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "miraj.kapadia@softwaresyncsmart.com",
+      "to_name": "Miraj Kapadia",
+      "source": "ai"
+    },
+    "email_ai": {
+      "subject": "Application for Java Developer at your organization",
+      "body": "Hi Miraj,\nI came across your LinkedIn post regarding the opening for the Java Developer role at Softwaresyncsmart.\nAs a seasoned Java Full Stack Developer with hands-on experience in Java, Spring Boot, and SQL, I believe my skills align well with the required qualifications. I am excited about the opportunity to apply my expertise in Java development and contribute to the success of Softwaresyncsmart. \nPlease find my resume attached.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "ittomiraj.kapadia@softwaresyncsmart.comKnow",
+      "to_name": "Miraj Kapadia",
+      "source": "ai"
+    },
+    "email_static": {
+      "subject": "Application for Java Developer at your organization",
+      "body": "Hi Miraj,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Softwaresyncsmart and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, REST APIs, SQL, and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "ittomiraj.kapadia@softwaresyncsmart.comKnow",
+      "to_name": "Miraj Kapadia",
+      "source": "static"
+    },
+    "error": null,
+    "outcome": "waiting",
+    "sent_at": "2026-07-15T15:03:32",
+    "outcome_updated_at": "2026-07-15T15:03:32",
+    "notes": null,
+    "resume_filename": null
+  },
+  "7cf846a7-ee00-4284-8f68-d93dab76b455": {
+    "id": "7cf846a7-ee00-4284-8f68-d93dab76b455",
+    "filename": "Media.jpg",
+    "status": "sent",
+    "source_type": "screenshot",
+    "source_url": null,
+    "extracted": {
+      "recruiter_email": "hr@careervala.com",
+      "recruiter_name": "Ankush",
+      "role": "Java Developer",
+      "company": "Careervala",
+      "job_description": null,
+      "location": "Pune",
+      "source_platform": "LinkedIn",
+      "skills_required": [
+        "Java Developer",
+        "Java Developer with 2-3 years of",
+        "Java",
+        "Spring Boot",
+        "SQL/MySQL",
+        "Java development",
+        "Spring Boot and database integration"
+      ],
+      "experience_required": "5 Years",
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": null,
+      "confidence": 0.7,
+      "raw_text": "AnkushPenshanwar\u00b72nd\n+Follow\nFounder And CEoO [(Careervala. com) (Career...\n18h\u00b7?\nWe're Hiring I Java Developer \nLocation: Pune / Mumbai\nExperience:2-5 Years\nSalary: Best in Industry\nWe're looking for a skilled Java Developer with 2-3 years of\nhands-on experience to join our growing team.\nKey Skills:\nJava\nSpring Boot\nHibernate\nRESTAPIS\nSQL/MySQL\nGit\nStrong problem-solving and debugging skills\nRequirements:\n- 2-3 years of experience in Java development\n- Good understanding of OOP concepts and backend\ndevelopment\n- Experience with Spring Boot and database integration\n- Excellent communication and teamwork skills\n Interested candidates can share their updated resume or\ntag someone who would bea great fit!\ncontact:-8856036933\nhr@careervala.com"
+    },
+    "email": {
+      "subject": "Application for Java Developer at Careervala",
+      "body": "Hi Ankush,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Careervala and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, REST APIs, SQL,  Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "hr@careervala.com",
+      "to_name": "Ankush",
+      "source": "ai"
+    },
+    "email_ai": {
+      "subject": "Application for Java Developer at Careervala",
+      "body": "Hi Ankush,\nI came across your LinkedIn post regarding the opening for the Java Developer role at Careervala.\nI am confident that my skills in Java, Spring Boot, and SQL align with the requirements of this position. \nMy experience as a Java Full Stack Developer has equipped me with hands-on expertise in developing Java-based applications.\n\nPlease find my resume attached.\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "hr@careervala.com",
+      "to_name": "Ankush",
+      "source": "ai"
+    },
+    "email_static": {
+      "subject": "Application for Java Developer at Careervala",
+      "body": "Hi Ankush,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Careervala and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot, REST APIs, SQL, and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "hr@careervala.com",
+      "to_name": "Ankush",
+      "source": "static"
+    },
+    "error": null,
+    "outcome": "waiting",
+    "sent_at": "2026-07-15T15:03:51",
+    "outcome_updated_at": "2026-07-15T15:03:51",
+    "notes": null,
+    "resume_filename": null
+  },
+  "e08b2895-28ef-46c7-a696-88c5613a855b": {
+    "id": "e08b2895-28ef-46c7-a696-88c5613a855b",
+    "filename": "LinkedIn: Java Developer",
+    "status": "sent",
+    "source_type": "linkedin_post",
+    "source_url": "https://www.linkedin.com/posts/paaritosh-dabral-78704397_javadeveloper-javafullstack-java-activity-7042439510634184704-7jSt",
+    "extracted": {
+      "recruiter_email": "paaritosh.dabral@stefanini.com",
+      "recruiter_name": "Join Stefanini",
+      "role": "Java Developer",
+      "company": "Stefanini",
+      "job_description": "Join Stefanini Group, We are hiring Java developers in NOIDA 62.\n#javadeveloper #javafullstack #java #hiring #noidajobs | Paaritosh Dabral Agree & Join LinkedIn By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . Skip to main content LinkedIn Top Content People Learning Jobs Games Get the app Sign in Join now Paaritosh Dabral\u2019s Post Paaritosh Dabral 3y Edited Report this post Join Stefanini Group , We are hiring Java developers in NOIDA 62. Share resume at paaritosh.dabral@stefanini.com Call / Text / WhatsApp 9456586080 / 8742930211 Stefanini North America and APAC #javadeveloper #javafullstack #java #hiring #noidajobs 40 5 Comments Like Comment Share Copy LinkedIn Facebook X Priyanka Ghodmare 3y Report this comment Hello, Greetings from Prime !!! Hope you are doing well. We have Long Time Contract Position for Java developer with our client. Please let me know if you are looking for job change in Pune location. Looking forward for your response. Like Reply 1 Reaction Chandra Shekhar 3y Report this comment Interested Like Reply 1 Reaction Aayushi Singh 3y Report this comment Muskan Goel Like Reply 2 Reactions 3 Reactions Mridul Sarma 3y Report this comment Commenting to reach larger pool Like Reply 1 Reaction Dilip Kumar 3y Report this comment Great Opportunity Like Reply 1 Reaction See more comments To view or add a comment, sign in 32,828 followers 1,339 Posts 5 Articles View Profile Connect More from this author Can a 10-second algorithm match what a - experienced recruiter sees in 2 minutes? Paaritosh Dabral 11mo Attrition vs. Retention in IT Companies: Trends and Insights Paaritosh Dabral 1y The Future of Talent Acquisition: Trends to Watch in 2025 Paaritosh Dabral 1y Explore content categories Career Productivity Finance Soft Skills & Emotional Intelligence Project Management Education Technology Leadership Ecommerce User Experience Show more Show less LinkedIn \u00a9 2026 About Accessibility User Agreement Privacy Policy Cookie Policy Copyright Policy Brand Policy Guest Controls Community Guidelines \u0627\u0644\u0639\u0631\u0628\u064a\u0629 (Arabic) \u09ac\u09be\u0982\u09b2\u09be (Bangla) \u010ce\u0161tina (Czech) Dansk (Danish) Deutsch (German) \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac (Greek) English (English) Espa\u00f1ol (Spanish) \u0641\u0627\u0631\u0633\u06cc (Persian) Suomi (Finnish) Fran\u00e7ais (French) \u0939\u093f\u0902\u0926\u0940 (Hindi) Magyar (Hungarian) Bahasa Indonesia (Indonesian) Italiano (Italian) \u05e2\u05d1\u05e8\u05d9\u05ea (Hebrew) \u65e5\u672c\u8a9e (Japanese) \ud55c\uad6d\uc5b4 (Korean) \u092e\u0930\u093e\u0920\u0940 (Marathi) Bahasa Malaysia (Malay) Nederlands (Dutch) Norsk (Norwegian) \u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40 (Punjabi) Polski (Polish) Portugu\u00eas (Portuguese) Rom\u00e2n\u0103 (Romanian) \u0420\u0443\u0441\u0441\u043a\u0438\u0439 (Russian) Svenska (Swedish) \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 (Telugu) \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22 (Thai) Tagalog (Tagalog) T\u00fcrk\u00e7e (Turkish) \u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430 (Ukrainian) Ti\u1ebfng Vi\u1ec7t (Vietnamese) \u7b80\u4f53\u4e2d\u6587 (Chinese (Simplified)) \u6b63\u9ad4\u4e2d\u6587 (Chinese (Traditional)) Language Sign in to view more content Create your free account or sign in to continue your search Email or phone Password Show Forgot password? Sign in Sign in with Email or New to LinkedIn? Join now By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . LinkedIn Never miss a beat on the app Don\u2019t have the app? Get it in the Microsoft Store. Open the app",
+      "location": null,
+      "source_platform": "LinkedIn",
+      "skills_required": null,
+      "experience_required": null,
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": "Join Stefanini Group, We are hiring Java developers in NOIDA 62.\n#javadeveloper #javafullstack #java #hiring #noidajobs | Paaritosh Dabral Agree & Join LinkedIn By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . Skip to main content",
+      "confidence": 0.9000000000000001,
+      "raw_text": "Join Stefanini Group, We are hiring Java developers in NOIDA 62.\n#javadeveloper #javafullstack #java #hiring #noidajobs | Paaritosh Dabral Agree & Join LinkedIn By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . Skip to main content LinkedIn Top Content People Learning Jobs Games Get the app Sign in Join now Paaritosh Dabral\u2019s Post Paaritosh Dabral 3y Edited Report this post Join Stefanini Group , We are hiring Java developers in NOIDA 62. Share resume at paaritosh.dabral@stefanini.com Call / Text / WhatsApp 9456586080 / 8742930211 Stefanini North America and APAC #javadeveloper #javafullstack #java #hiring #noidajobs 40 5 Comments Like Comment Share Copy LinkedIn Facebook X Priyanka Ghodmare 3y Report this comment Hello, Greetings from Prime !!! Hope you are doing well. We have Long Time Contract Position for Java developer with our client. Please let me know if you are looking for job change in Pune location. Looking forward for your response. Like Reply 1 Reaction Chandra Shekhar 3y Report this comment Interested Like Reply 1 Reaction Aayushi Singh 3y Report this comment Muskan Goel Like Reply 2 Reactions 3 Reactions Mridul Sarma 3y Report this comment Commenting to reach larger pool Like Reply 1 Reaction Dilip Kumar 3y Report this comment Great Opportunity Like Reply 1 Reaction See more comments To view or add a comment, sign in 32,828 followers 1,339 Posts 5 Articles View Profile Connect More from this author Can a 10-second algorithm match what a - experienced recruiter sees in 2 minutes? Paaritosh Dabral 11mo Attrition vs. Retention in IT Companies: Trends and Insights Paaritosh Dabral 1y The Future of Talent Acquisition: Trends to Watch in 2025 Paaritosh Dabral 1y Explore content categories Career Productivity Finance Soft Skills & Emotional Intelligence Project Management Education Technology Leadership Ecommerce User Experience Show more Show less LinkedIn \u00a9 2026 About Accessibility User Agreement Privacy Policy Cookie Policy Copyright Policy Brand Policy Guest Controls Community Guidelines \u0627\u0644\u0639\u0631\u0628\u064a\u0629 (Arabic) \u09ac\u09be\u0982\u09b2\u09be (Bangla) \u010ce\u0161tina (Czech) Dansk (Danish) Deutsch (German) \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac (Greek) English (English) Espa\u00f1ol (Spanish) \u0641\u0627\u0631\u0633\u06cc (Persian) Suomi (Finnish) Fran\u00e7ais (French) \u0939\u093f\u0902\u0926\u0940 (Hindi) Magyar (Hungarian) Bahasa Indonesia (Indonesian) Italiano (Italian) \u05e2\u05d1\u05e8\u05d9\u05ea (Hebrew) \u65e5\u672c\u8a9e (Japanese) \ud55c\uad6d\uc5b4 (Korean) \u092e\u0930\u093e\u0920\u0940 (Marathi) Bahasa Malaysia (Malay) Nederlands (Dutch) Norsk (Norwegian) \u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40 (Punjabi) Polski (Polish) Portugu\u00eas (Portuguese) Rom\u00e2n\u0103 (Romanian) \u0420\u0443\u0441\u0441\u043a\u0438\u0439 (Russian) Svenska (Swedish) \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 (Telugu) \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22 (Thai) Tagalog (Tagalog) T\u00fcrk\u00e7e (Turkish) \u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430 (Ukrainian) Ti\u1ebfng Vi\u1ec7t (Vietnamese) \u7b80\u4f53\u4e2d\u6587 (Chinese (Simplified)) \u6b63\u9ad4\u4e2d\u6587 (Chinese (Traditional)) Language Sign in to view more content Create your free account or sign in to continue your search Email or phone Password Show Forgot password? Sign in Sign in with Email or New to LinkedIn? Join now By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . LinkedIn Never miss a beat on the app Don\u2019t have the app? Get it in the Microsoft Store. Open the app"
+    },
+    "email": {
+      "subject": "Application for Java Developer at Stefanini",
+      "body": "Hi  Paaritosh,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Stefanini and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,MicroServices, REST APIs,AWS,Databases like Mysql and Postgresql, Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "paaritosh.dabral@stefanini.com",
+      "to_name": "Join Stefanini",
+      "source": "static"
+    },
+    "email_ai": {
+      "subject": "Application for Java Developer at Stefanini",
+      "body": "Hi  Paaritosh,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Stefanini and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,MicroServices, REST APIs,AWS,Databases like Mysql and Postgresql, Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "paaritosh.dabral@stefanini.com",
+      "to_name": "Join Stefanini",
+      "source": "static"
+    },
+    "email_static": {
+      "subject": "Application for Java Developer at Stefanini",
+      "body": "Hi Join,\n\nI came across your LinkedIn post regarding the opening for the Java Developer role at Stefanini and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,MicroServices, REST APIs,AWS,Databases like Mysql and Postgresql, Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "paaritosh.dabral@stefanini.com",
+      "to_name": "Join Stefanini",
+      "source": "static"
+    },
+    "error": null,
+    "outcome": "waiting",
+    "sent_at": "2026-07-15T15:11:39",
+    "outcome_updated_at": "2026-07-15T15:11:39",
+    "notes": null,
+    "resume_filename": null
+  },
+  "3dc25fa6-e8cb-4f34-b3ed-f4dbac353f98": {
+    "id": "3dc25fa6-e8cb-4f34-b3ed-f4dbac353f98",
+    "filename": "LinkedIn: Backend Engineer",
+    "status": "sent",
+    "source_type": "linkedin_post",
+    "source_url": "https://www.linkedin.com/posts/thekanikajain_hiring-staffengineer-backendengineer-activity-7482807124327243776-Q4vV",
+    "extracted": {
+      "recruiter_email": "shubhjaiswal980@gmail.com",
+      "recruiter_name": "Kanika Jain",
+      "role": "Backend Engineer",
+      "company": null,
+      "job_description": "We're Hiring: Staff Backend Engineer | Coupang | Hyderabad Apply here: https ... Talent Acquisition | India Recruiting - Currently Hiring for #Staff- Backend ...",
+      "location": null,
+      "source_platform": "LinkedIn",
+      "skills_required": null,
+      "experience_required": null,
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": "We're Hiring: Staff Backend Engineer | Coupang | Hyderabad Apply here: https ... Talent Acquisition | India Recruiting - Currently Hiring for #Staff- Backend ...",
+      "confidence": 0.65,
+      "raw_text": "We're Hiring: Staff Backend Engineer | Coupang | Hyderabad Apply here: https ... Talent Acquisition | India Recruiting - Currently Hiring for #Staff- Backend ..."
+    },
+    "email": {
+      "subject": "Application for Backend Engineer at Gmail",
+      "body": "Hi Kanika,\nI came across your LinkedIn post regarding the opening for the Backend Engineer role at Gmail.\nI believe my skills in Java, Spring Boot, and REST APIs align well with the job requirements. I have hands-on experience in developing backend applications using these technologies.\nPlease find my resume attached.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "shubhjaiswal980@gmail.com",
+      "to_name": "Kanika Jain",
+      "source": "ai"
+    },
+    "email_ai": {
+      "subject": "Application for Backend Engineer at Gmail",
+      "body": "Hi Kanika,\nI came across your LinkedIn post regarding the opening for the Backend Engineer role at Gmail.\nI believe my skills in Java, Spring Boot, and REST APIs align well with the job requirements. I have hands-on experience in developing backend applications using these technologies.\nPlease find my resume attached.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "shubhjaiswal980@gmail.com",
+      "to_name": "Kanika Jain",
+      "source": "ai"
+    },
+    "email_static": {
+      "subject": "Application for Backend Engineer at Gmail",
+      "body": "Hi Kanika,\n\nI came across your LinkedIn post regarding the opening for the Backend Engineer role at Gmail and found it closely aligned with my Java backend experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,MicroServices, REST APIs,AWS,Databases like Mysql and Postgresql, Git and frontend frameworks.\n\nI have hands-on experience with Spring Boot, REST APIs, and SQL-backed services. Please find my resume attached.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "shubhjaiswal980@gmail.com",
+      "to_name": "Kanika Jain",
+      "source": "static"
+    },
+    "error": null,
+    "outcome": "waiting",
+    "sent_at": "2026-07-15T16:22:34",
+    "outcome_updated_at": "2026-07-15T16:22:34",
+    "notes": null,
+    "resume_filename": "resume_636909a7.pdf"
+  },
+  "7900341e-75c1-4c1d-8dd9-ce8deb227b16": {
+    "id": "7900341e-75c1-4c1d-8dd9-ce8deb227b16",
+    "filename": "LinkedIn: Software Engineer",
+    "status": "pending",
+    "source_type": "linkedin_post",
+    "source_url": "https://www.linkedin.com/posts/shankar-prem40_rubrik-rubrikjobs-rubrikcareers-activity-7482995256729399296-XeGx",
+    "extracted": {
+      "recruiter_email": null,
+      "recruiter_name": "Prem",
+      "role": "Software Engineer",
+      "company": null,
+      "job_description": "Hiring for Software Engineer. Requirements: 1. 2-5 years of software development experience 2. 2+ years of product development experience. Proficient in one of ...",
+      "location": null,
+      "source_platform": "LinkedIn",
+      "skills_required": null,
+      "experience_required": "2+ years",
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": "Hiring for Software Engineer. Requirements: 1. 2-5 years of software development experience 2. 2+ years of product development experience. Proficient in one of ...",
+      "confidence": 0.6,
+      "raw_text": "Hiring for Software Engineer. Requirements: 1. 2-5 years of software development experience 2. 2+ years of product development experience. Proficient in one of ..."
+    },
+    "email": null,
+    "email_ai": null,
+    "email_static": null,
+    "error": "No email found \u2014 enrich URL, paste text, or add email manually",
+    "outcome": "none",
+    "sent_at": null,
+    "outcome_updated_at": null,
+    "notes": null,
+    "resume_filename": null
+  },
+  "0365e736-9996-4db7-a5c2-a809b1d71deb": {
+    "id": "0365e736-9996-4db7-a5c2-a809b1d71deb",
+    "filename": "LinkedIn: Software Engineer",
+    "status": "sent",
+    "source_type": "linkedin_post",
+    "source_url": "https://www.linkedin.com/posts/aniket-thorwade-b64110154_kpit-hiring-autosar-activity-7482752600032079872-OOb6",
+    "extracted": {
+      "recruiter_email": "anikett2@kpit.com",
+      "recruiter_name": null,
+      "role": "Software Engineer",
+      "company": "Kpit",
+      "job_description": "KPIT is Hiring | Transmission Application Software Engineer | MATLAB/Simulink | MBD | AUTOSAR ... Interested candidates can share their updated resume ...\n#kpit #hiring #autosar #transmissiondomain #matlab #simulink #modelbaseddevelopment #mbd #embeddedsoftware #automotivesoftware #automotiveengineering #misra #maab #aspice #softwareengineer\u2026 | Aniket Thorwade Agree & Join LinkedIn By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . Skip to main content LinkedIn Top Content People Learning Jobs Games Get the app Sign in Join now Aniket Thorwade\u2019s Post Aniket Thorwade 23h Report this post \ud83d\ude80 KPIT is Hiring | Transmission Application Software Engineer | MATLAB/Simulink | MBD | AUTOSAR \ud83d\ude80 Are you passionate about building next-generation automotive software solutions? KPIT is looking for experienced professionals in the Transmission Domain to join our growing team. \ud83d\udccc Position: Transmission Application Software Engineer Experience: 4\u20139 Years. Role Overview We are seeking a skilled Model-Based Software Engineer with expertise in the Transmission domain to develop high-quality automotive software solutions using MATLAB/Simulink and model-based design practices. The candidate will be responsible for requirement definition, architecture design, software development, and verification activities aligned with automotive standards such as MISRA, MAAB, ASPICE, and OEM guidelines. Key Responsibilities \u2705 Create and manage software requirements using PTC Integrity / Windchill RV&S \u2705 Develop static and dynamic system architecture using Enterprise Architect (Sparx EA) \u2705 Create Software Detailed Design Documents (SWDD) \u2705 Develop and optimize control algorithms using MATLAB/Simulink & Stateflow \u2705 Ensure compliance with MAAB modeling guidelines \u2705 Perform automatic code generation using Embedded Coder \u2705 Ensure MISRA C compliance through static code analysis \u2705 Design and execute MIL/SIL test cases and unit testing activities \u2705 Perform validation, verification, and coverage analysis \u2705 Work within an ASPICE-compliant software development environment Required Skills \ud83d\udd39 Strong experience in Transmission Domain \ud83d\udd39 Hands-on experience in AUTOSAR development \ud83d\udd39 MATLAB/Simulink & Model-Based Development (MBD) \ud83d\udd39 PTC Integrity / Windchill RV&S \ud83d\udd39 Enterprise Architect (EA) \ud83d\udd39 MISRA C, MAAB Compliance, Polyspace \ud83d\udd39 MIL/SIL Testing, Simulink Test & Coverage \ud83d\udd39 Requirement Engineering & Traceability \ud83d\udd39 Git/SVN Configuration Management \ud83d\udd39 Strong understanding of ASPICE Educational Qualification \ud83c\udf93 Bachelor's or master's degree in Electronics, Electrical, Mechanical, Automotive Engineering, or related disciplines. \ud83d\udce9 Interested candidates can share their updated resume along with the following details to anikett2@kpit.com Current CTC Expected CTC (ECTC) Notice Period Current Location Availability for Interview Feel free to connect with me directly for more details. #KPIT #Hiring #AUTOSAR #TransmissionDomain #MATLAB #Simulink #ModelBasedDevelopment #MBD #EmbeddedSoftware #AutomotiveSoftware #AutomotiveEngineering #MISRA #MAAB #ASPICE #SoftwareEngineer #AutomotiveJobs #CareerOpportunity #Recruitment #EngineeringJobs #Mobility #KPITCareers #TransmissionApplicationSoftwareEngineer 45 8 Comments Like Comment Share Copy LinkedIn Facebook X Pooja sri Maddirala 4h Report this comment Intrested Like Reply 1 Reaction Sushyam Shahapurkar 7h Report this comment Interested Like Reply 1 Reaction Gopal Kamble 19h Report this comment Interested Like Reply 1 Reaction Chetan Tayshete SAFe\u00ae Scrum Master \ud83c\uddee\ud83c\uddf3 \ud83c\uddfa\ud83c\uddf8 \ud83c\uddfb\ud83c\uddf3 \ud83c\uddef\ud83c\uddf5 Technical Project Manager at KPIT. 17h Report this comment #cfbr Like Reply 1 Reaction vaibhav suryawanshi 9h Report this comment Sagar Mandlik Like Reply 1 Reaction Rakesh Singare 22h Report this comment Interested Aniket Thorwade Like Reply 2 Reactions 3 Reactions See more comments To view or add a comment, sign in 10,214 followers 106 Posts View Profile Follow Explore content categories Career Productivity Finance Soft Skills & Emotional Intelligence Project Management Education Technology Leadership Ecommerce User Experience Show more Show less LinkedIn \u00a9 2026 About A",
+      "location": null,
+      "source_platform": "LinkedIn",
+      "skills_required": null,
+      "experience_required": "9 Years",
+      "employment_type": null,
+      "key_responsibilities": null,
+      "content_summary": "KPIT is Hiring | Transmission Application Software Engineer | MATLAB/Simulink | MBD | AUTOSAR ... Interested candidates can share their updated resume ...\n#kpit #hiring #autosar #transmissiondomain #matlab #simulink #modelbaseddevelopment #mbd #embeddedsoftware #automotivesoftware #automotiveenginee",
+      "confidence": 0.65,
+      "raw_text": "KPIT is Hiring | Transmission Application Software Engineer | MATLAB/Simulink | MBD | AUTOSAR ... Interested candidates can share their updated resume ...\n#kpit #hiring #autosar #transmissiondomain #matlab #simulink #modelbaseddevelopment #mbd #embeddedsoftware #automotivesoftware #automotiveengineering #misra #maab #aspice #softwareengineer\u2026 | Aniket Thorwade Agree & Join LinkedIn By clicking Continue to join or sign in, you agree to LinkedIn\u2019s User Agreement , Privacy Policy , and Cookie Policy . Skip to main content LinkedIn Top Content People Learning Jobs Games Get the app Sign in Join now Aniket Thorwade\u2019s Post Aniket Thorwade 23h Report this post \ud83d\ude80 KPIT is Hiring | Transmission Application Software Engineer | MATLAB/Simulink | MBD | AUTOSAR \ud83d\ude80 Are you passionate about building next-generation automotive software solutions? KPIT is looking for experienced professionals in the Transmission Domain to join our growing team. \ud83d\udccc Position: Transmission Application Software Engineer Experience: 4\u20139 Years. Role Overview We are seeking a skilled Model-Based Software Engineer with expertise in the Transmission domain to develop high-quality automotive software solutions using MATLAB/Simulink and model-based design practices. The candidate will be responsible for requirement definition, architecture design, software development, and verification activities aligned with automotive standards such as MISRA, MAAB, ASPICE, and OEM guidelines. Key Responsibilities \u2705 Create and manage software requirements using PTC Integrity / Windchill RV&S \u2705 Develop static and dynamic system architecture using Enterprise Architect (Sparx EA) \u2705 Create Software Detailed Design Documents (SWDD) \u2705 Develop and optimize control algorithms using MATLAB/Simulink & Stateflow \u2705 Ensure compliance with MAAB modeling guidelines \u2705 Perform automatic code generation using Embedded Coder \u2705 Ensure MISRA C compliance through static code analysis \u2705 Design and execute MIL/SIL test cases and unit testing activities \u2705 Perform validation, verification, and coverage analysis \u2705 Work within an ASPICE-compliant software development environment Required Skills \ud83d\udd39 Strong experience in Transmission Domain \ud83d\udd39 Hands-on experience in AUTOSAR development \ud83d\udd39 MATLAB/Simulink & Model-Based Development (MBD) \ud83d\udd39 PTC Integrity / Windchill RV&S \ud83d\udd39 Enterprise Architect (EA) \ud83d\udd39 MISRA C, MAAB Compliance, Polyspace \ud83d\udd39 MIL/SIL Testing, Simulink Test & Coverage \ud83d\udd39 Requirement Engineering & Traceability \ud83d\udd39 Git/SVN Configuration Management \ud83d\udd39 Strong understanding of ASPICE Educational Qualification \ud83c\udf93 Bachelor's or master's degree in Electronics, Electrical, Mechanical, Automotive Engineering, or related disciplines. \ud83d\udce9 Interested candidates can share their updated resume along with the following details to anikett2@kpit.com Current CTC Expected CTC (ECTC) Notice Period Current Location Availability for Interview Feel free to connect with me directly for more details. #KPIT #Hiring #AUTOSAR #TransmissionDomain #MATLAB #Simulink #ModelBasedDevelopment #MBD #EmbeddedSoftware #AutomotiveSoftware #AutomotiveEngineering #MISRA #MAAB #ASPICE #SoftwareEngineer #AutomotiveJobs #CareerOpportunity #Recruitment #EngineeringJobs #Mobility #KPITCareers #TransmissionApplicationSoftwareEngineer 45 8 Comments Like Comment Share Copy LinkedIn Facebook X Pooja sri Maddirala 4h Report this comment Intrested Like Reply 1 Reaction Sushyam Shahapurkar 7h Report this comment Interested Like Reply 1 Reaction Gopal Kamble 19h Report this comment Interested Like Reply 1 Reaction Chetan Tayshete SAFe\u00ae Scrum Master \ud83c\uddee\ud83c\uddf3 \ud83c\uddfa\ud83c\uddf8 \ud83c\uddfb\ud83c\uddf3 \ud83c\uddef\ud83c\uddf5 Technical Project Manager at KPIT. 17h Report this comment #cfbr Like Reply 1 Reaction vaibhav suryawanshi 9h Report this comment Sagar Mandlik Like Reply 1 Reaction Rakesh Singare 22h Report this comment Interested Aniket Thorwade Like Reply 2 Reactions 3 Reactions See more comments To view or add a comment, sign in 10,214 followers 106 Posts View Profile Follow Explore content categories Career Productivity Finance Soft Skills & Emotional Intelligence Project Management Education Technology Leadership Ecommerce User Experience Show more Show less LinkedIn \u00a9 2026 About A"
+    },
+    "email": {
+      "subject": "Application for Software Engineer at Kpit",
+      "body": "Hi there,\n\nI came across your LinkedIn post regarding the opening for the Software Engineer role at Kpit and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,MicroServices, REST APIs,AWS,Databases like Mysql and Postgresql, Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "gatelate980@gmail.com",
+      "to_name": "",
+      "source": "ai"
+    },
+    "email_ai": {
+      "subject": "Application for Software Engineer at Kpit",
+      "body": "Hi there,\n\nI came across your LinkedIn post regarding the opening for the Software Engineer role at Kpit and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,MicroServices, REST APIs,AWS,Databases like Mysql and Postgresql, Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "gatelate980@gmail.com",
+      "to_name": "",
+      "source": "ai"
+    },
+    "email_static": {
+      "subject": "Application for Software Engineer at Kpit",
+      "body": "Hi there,\n\nI came across your LinkedIn post regarding the opening for the Software Engineer role at Kpit and found the opportunity closely aligned with my skills and experience.\n\nI have 3+ years of hands-on experience in Java Full Stack Application Development, working with technologies such as Java, Spring Boot,MicroServices, REST APIs,AWS,Databases like Mysql and Postgresql, Git and frontend frameworks.\n\nPlease find my resume attached for your reference. I would appreciate the opportunity to discuss how my experience can contribute to your team.\n\nLooking forward to hearing from you.\n\nThanks & Regards,\nAryan Jaiswal",
+      "to_email": "anikett2@kpit.com",
+      "to_name": null,
+      "source": "static"
+    },
+    "error": null,
+    "outcome": "waiting",
+    "sent_at": "2026-07-15T16:22:55",
+    "outcome_updated_at": "2026-07-15T16:22:55",
+    "notes": null,
+    "resume_filename": "resume_636909a7.pdf"
+  }
+}

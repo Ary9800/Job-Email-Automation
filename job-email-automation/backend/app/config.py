@@ -58,6 +58,13 @@ Thanks & Regards,
 
     max_upload_size_mb: int = 10
 
+    # Optional SerpAPI key for more stable Google results (falls back to DuckDuckGo)
+    # Get a key at https://serpapi.com — leave empty to use free DuckDuckGo search
+    serpapi_api_key: str = ""
+
+    # Allow bookmarklet calls from LinkedIn pages
+    allow_linkedin_cors: bool = True
+
 
 settings = Settings()
 
@@ -66,24 +73,33 @@ RESUME_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def resolve_resume_path(resume_filename: str | None = None) -> Path | None:
-    """Find resume file: uploaded name first, then .env path."""
+    """Find resume file: uploaded name first, then .env path, then any file in resumes/."""
     if resume_filename:
         uploaded = RESUME_DIR / resume_filename
-        if uploaded.exists():
+        if uploaded.exists() and uploaded.is_file():
             return uploaded
 
     if settings.default_resume_path:
         path = Path(settings.default_resume_path)
         if not path.is_absolute():
             path = BASE_DIR / path
-        if path.exists():
+        if path.exists() and path.is_file():
             return path
 
-    # Fallback: default_resume.pdf in resumes folder
-    for name in ("default_resume.pdf", "resume.pdf"):
+    # Fallback: default names
+    for name in ("default_resume.pdf", "resume.pdf", "default_resume.docx", "resume.docx"):
         p = RESUME_DIR / name
-        if p.exists():
+        if p.exists() and p.is_file():
             return p
+
+    # Last resort: newest uploaded resume in resumes/ folder
+    candidates = [
+        p for p in RESUME_DIR.iterdir()
+        if p.is_file() and p.suffix.lower() in {".pdf", ".doc", ".docx"}
+        and p.name.lower() != "readme.txt"
+    ]
+    if candidates:
+        return max(candidates, key=lambda p: p.stat().st_mtime)
 
     return None
 
@@ -92,6 +108,7 @@ def ensure_default_resume_in_store() -> tuple[str | None, str | None]:
     """
     Copy .env resume into resumes/ folder for consistent serving.
     Returns (stored_filename, display_name).
+    Falls back to newest uploaded resume if .env path is missing.
     """
     source = resolve_resume_path()
     if not source:
