@@ -113,6 +113,15 @@ export default function JobList({
                     Retry Send
                   </button>
                 )}
+                {job.status === 'sent' && (job.email?.to_email || job.email_ai?.to_email) && (
+                  <button
+                    className="btn-primary"
+                    style={{ padding: '6px 12px', fontSize: 12, background: '#2563eb' }}
+                    onClick={() => onPreview(job.id)}
+                  >
+                    Edit & Resend
+                  </button>
+                )}
                 <button
                   className="btn-secondary"
                   style={{ padding: '6px 12px', fontSize: 12 }}
@@ -135,7 +144,7 @@ export default function JobList({
                 ✓ Email already sent
                 {job.outcome && job.outcome !== 'none' ? ` · ${job.outcome.replace('_', ' ')}` : ' · waiting'}
                 {job.sent_at ? ` · ${job.sent_at}` : ''}
-                {' — update outcome in Tracker tab'}
+                {' — use Edit & Resend to fix and send again'}
               </p>
             )}
 

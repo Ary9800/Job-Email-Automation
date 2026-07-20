@@ -301,7 +301,7 @@ export default function App() {
 
   const openPreview = (jobId = null) => {
     const ready = jobs.filter((j) =>
-      (j.status === 'email_generated' || j.status === 'failed')
+      (j.status === 'email_generated' || j.status === 'failed' || j.status === 'sent')
       && (j.email?.to_email || j.email_ai?.to_email),
     )
     if (ready.length === 0) {
@@ -453,7 +453,7 @@ export default function App() {
               className="btn-secondary"
               onClick={openPreview}
               disabled={loading || !jobs.some((j) =>
-                (j.status === 'email_generated' || j.status === 'failed')
+                (j.status === 'email_generated' || j.status === 'failed' || j.status === 'sent')
                 && (j.email?.to_email || j.email_ai?.to_email),
               )}
             >

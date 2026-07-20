@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { saveJobDraft } from '../api'
 
 function isReviewable(job) {
-  // Ready to send OR previous send failed but draft email still exists
+  // Ready to send, failed (retry), or already sent (edit & resend)
   if (!job?.email?.to_email && !job?.email_ai?.to_email && !job?.email_static?.to_email) {
     return false
   }
-  return job.status === 'email_generated' || job.status === 'failed'
+  return job.status === 'email_generated' || job.status === 'failed' || job.status === 'sent'
 }
 
 export default function EmailPreviewModal({
@@ -53,6 +53,7 @@ export default function EmailPreviewModal({
   const currentDraft = currentJob ? drafts[currentJob.id] : null
   const currentMode = currentJob ? (emailMode[currentJob.id] || 'ai') : 'ai'
   const isRetry = currentJob?.status === 'failed'
+  const isResend = currentJob?.status === 'sent' && !sent.has(currentJob?.id)
 
   const persistDraft = (jobId, draft, mode) => {
     if (!jobId || !draft) return
@@ -162,7 +163,7 @@ export default function EmailPreviewModal({
           <div>
             <h2 style={styles.title}>Review before sending</h2>
             <p style={styles.subtitle}>
-              Edit To / Subject / Body — changes are saved automatically and kept on retry if send fails.
+              Edit To / Subject / Body — changes are saved. Use Resend for already-sent emails if you need to fix something.
             </p>
           </div>
           <button className="btn-secondary" onClick={onClose} style={styles.closeBtn}>✕</button>
@@ -182,6 +183,14 @@ export default function EmailPreviewModal({
           </div>
         )}
 
+        {isResend && !sendError && (
+          <div style={styles.resendBanner}>
+            <strong>Already sent</strong>
+            {currentJob.sent_at ? ` on ${currentJob.sent_at}` : ''}.
+            {' '}Edit the email below and click <strong>Resend</strong> to send the corrected version again.
+          </div>
+        )}
+
         <div style={styles.progress}>
           <span style={styles.progressText}>
             {sent.size} sent · {skipped.size} skipped · {reviewable.length} remaining
@@ -198,10 +207,11 @@ export default function EmailPreviewModal({
           <aside style={styles.sidebar}>
             <h3 style={styles.sidebarTitle}>Emails ({pendingJobs.length})</h3>
             {pendingJobs.map((job) => {
-              const isSent = sent.has(job.id)
+              const isSentSession = sent.has(job.id)
               const isSkipped = skipped.has(job.id)
               const isActive = currentJob?.id === job.id
               const isFailed = job.status === 'failed'
+              const wasSentEarlier = job.status === 'sent' && !isSentSession
               const reviewIdx = reviewable.findIndex((j) => j.id === job.id)
 
               return (
@@ -209,17 +219,34 @@ export default function EmailPreviewModal({
                   key={job.id}
                   style={{
                     ...styles.sidebarItem,
-                    background: isActive ? 'var(--accent)' : isSent ? '#14532d33' : isFailed ? '#450a0a66' : isSkipped ? '#374151' : 'var(--bg)',
-                    borderColor: isActive ? 'var(--accent)' : isFailed ? '#f87171' : 'var(--border)',
+                    background: isActive
+                      ? 'var(--accent)'
+                      : isSentSession
+                        ? '#14532d33'
+                        : isFailed
+                          ? '#450a0a66'
+                          : wasSentEarlier
+                            ? '#1e3a5f66'
+                            : isSkipped
+                              ? '#374151'
+                              : 'var(--bg)',
+                    borderColor: isActive
+                      ? 'var(--accent)'
+                      : isFailed
+                        ? '#f87171'
+                        : wasSentEarlier
+                          ? '#60a5fa'
+                          : 'var(--border)',
                     opacity: isSkipped ? 0.6 : 1,
                   }}
-                  onClick={() => !isSent && !isSkipped && setCurrentIndex(reviewIdx >= 0 ? reviewIdx : 0)}
-                  disabled={isSent || isSkipped}
+                  onClick={() => !isSentSession && !isSkipped && setCurrentIndex(reviewIdx >= 0 ? reviewIdx : 0)}
+                  disabled={isSentSession || isSkipped}
                 >
                   <span style={styles.sidebarItemTitle}>{job.extracted?.role || job.filename}</span>
                   <span style={styles.sidebarItemMeta}>{job.extracted?.company || '—'}</span>
-                  {isSent && <span style={styles.badgeSent}>✓ Sent</span>}
-                  {isFailed && !isSent && <span style={styles.badgeFailed}>Retry needed</span>}
+                  {isSentSession && <span style={styles.badgeSent}>✓ Sent</span>}
+                  {wasSentEarlier && <span style={styles.badgeResend}>Edit & Resend</span>}
+                  {isFailed && !isSentSession && <span style={styles.badgeFailed}>Retry needed</span>}
                   {isSkipped && <span style={styles.badgeSkipped}>Skipped</span>}
                 </button>
               )
@@ -362,13 +389,18 @@ export default function EmailPreviewModal({
                     className="btn-primary"
                     onClick={handleApproveAndSend}
                     disabled={sending || !currentDraft.to_email || !currentDraft.subject}
-                    style={{ background: isRetry || sendError ? '#ea580c' : '#16a34a', minWidth: 160 }}
+                    style={{
+                      background: isResend ? '#2563eb' : (isRetry || sendError ? '#ea580c' : '#16a34a'),
+                      minWidth: 160,
+                    }}
                   >
                     {sending
                       ? 'Sending...'
-                      : isRetry || sendError
-                        ? `Retry Send (${currentMode === 'ai' ? 'AI' : 'Static'})`
-                        : `Approve & Send (${currentMode === 'ai' ? 'AI' : 'Static'})`}
+                      : isResend
+                        ? `Resend (${currentMode === 'ai' ? 'AI' : 'Static'})`
+                        : isRetry || sendError
+                          ? `Retry Send (${currentMode === 'ai' ? 'AI' : 'Static'})`
+                          : `Approve & Send (${currentMode === 'ai' ? 'AI' : 'Static'})`}
                   </button>
                 </div>
               </div>
@@ -514,6 +546,7 @@ const styles = {
   sidebarItemMeta: { fontSize: 11, color: 'var(--text-muted)' },
   badgeSent: { fontSize: 10, color: 'var(--success)', fontWeight: 600, marginTop: 4 },
   badgeFailed: { fontSize: 10, color: '#f87171', fontWeight: 600, marginTop: 4 },
+  badgeResend: { fontSize: 10, color: '#60a5fa', fontWeight: 600, marginTop: 4 },
   badgeSkipped: { fontSize: 10, color: 'var(--text-muted)', fontWeight: 600, marginTop: 4 },
   errorBanner: {
     margin: '0 24px',
@@ -522,6 +555,16 @@ const styles = {
     background: 'rgba(239,68,68,0.12)',
     border: '1px solid rgba(239,68,68,0.35)',
     color: '#fca5a5',
+    fontSize: 13,
+    lineHeight: 1.45,
+  },
+  resendBanner: {
+    margin: '0 24px',
+    padding: '10px 14px',
+    borderRadius: 8,
+    background: 'rgba(37,99,235,0.12)',
+    border: '1px solid rgba(37,99,235,0.35)',
+    color: '#93c5fd',
     fontSize: 13,
     lineHeight: 1.45,
   },

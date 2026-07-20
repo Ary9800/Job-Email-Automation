@@ -62,7 +62,7 @@ pip install -r requirements.txt
 copy .env.example .env
 # Edit .env — set SENDER_*, SMTP_*, DEFAULT_RESUME_PATH
 
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8080
 ```
 
 API: http://localhost:8000  
